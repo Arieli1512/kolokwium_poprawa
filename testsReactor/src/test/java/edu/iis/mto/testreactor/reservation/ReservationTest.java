@@ -40,11 +40,6 @@ public class ReservationTest {
 
 
     @Test
-    void itCompiles() {
-        MatcherAssert.assertThat(true, equalTo(true));
-    }
-
-    @Test
     void reservationShouldContainProduct()
     {
         Reservation reservation = new Reservation(Id.generate(), Reservation.ReservationStatus.OPENED,clientData,date);
