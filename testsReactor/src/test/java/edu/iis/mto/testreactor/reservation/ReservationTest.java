@@ -73,6 +73,13 @@ public class ReservationTest {
     }
 
     @Test
+    void getStatusReturnCLOSED()
+    {
+        Reservation reservation = new Reservation(Id.generate(), Reservation.ReservationStatus.CLOSED,clientData,date);
+        assertEquals(Reservation.ReservationStatus.CLOSED,reservation.getStatus());
+    }
+
+    @Test
     void reservationIsClosed()
     {
         Reservation reservation = new Reservation(Id.generate(), Reservation.ReservationStatus.CLOSED,clientData,date);
