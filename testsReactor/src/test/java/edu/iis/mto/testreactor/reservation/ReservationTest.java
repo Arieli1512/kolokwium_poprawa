@@ -63,9 +63,15 @@ public class ReservationTest {
         Money money = new Money(100);
         Product product = new Product(Id.generate(),money,"Food1",ProductType.FOOD);
         assertEquals(false,  reservation.contains(product));
-
-
     }
+
+    @Test
+    void getStatusReturnOPENED()
+    {
+        Reservation reservation = new Reservation(Id.generate(), Reservation.ReservationStatus.OPENED,clientData,date);
+        assertEquals(Reservation.ReservationStatus.OPENED,reservation.getStatus());
+    }
+
     @Test
     void reservationIsClosed()
     {
@@ -97,7 +103,9 @@ public class ReservationTest {
         Money money = new Money(100);
         Product product = new Product(Id.generate(),money,"Food1",ProductType.FOOD);
         Discount discount = new Discount("Discount",new Money(10));
+
         ArrayList<OfferItem> avabile = new ArrayList<>();
+
         ProductData productData = new ProductData(product.getId(),product.getPrice(),product.getName(),product.getProductType(),product.generateSnapshot().getSnapshotDate());
         OfferItem offerItem = new OfferItem(productData,1);
         reservation.add(product,1);
@@ -107,5 +115,6 @@ public class ReservationTest {
         assertEquals(offer.getAvailabeItems(),reservation.calculateOffer(discountPolicy).getAvailabeItems());
         assertEquals(offer.getUnavailableItems(),reservation.calculateOffer(discountPolicy).getUnavailableItems());
     }
+
 
 }
